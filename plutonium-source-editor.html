@@ -1,0 +1,36 @@
+<link rel="import" href="../polymer/polymer-element.html">
+
+<dom-module id="plutonium-source-editor">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <h2>Hello [[prop1]]!</h2>
+  </template>
+
+  <script>
+    /**
+     * `plutonium-source-editor`
+     * Polymer based source editor.
+     *
+     * @customElement
+     * @polymer
+     * @demo demo/index.html
+     */
+    class PlutoniumSourceEditor extends Polymer.Element {
+      static get is() { return 'plutonium-source-editor'; }
+      static get properties() {
+        return {
+          prop1: {
+            type: String,
+            value: 'plutonium-source-editor'
+          }
+        };
+      }
+    }
+
+    window.customElements.define(PlutoniumSourceEditor.is, PlutoniumSourceEditor);
+  </script>
+</dom-module>
