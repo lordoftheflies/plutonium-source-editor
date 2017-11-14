@@ -9,24 +9,54 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="shared-styles.html">
+<link rel="import" href="../iron-list/iron-list.html">
+<link rel="import" href="../iron-icon/iron-icon.html">
+<link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-button/paper-button.html">
 
 <dom-module id="plutonium-source-command-palette">
     <template>
-        <style include="shared-styles">
+        <style>
             :host {
                 display: block;
 
                 padding: 10px;
             }
         </style>
-
-
+        <template is="dom-repeat" items="[[schema.commandGroup]]" as="commandGroup">
+            <iron-list items="[[commandGroup.commands]]" as="command">
+                <paper-button raised on-tap="onAddCommand">
+                    <paper-icon-item raised>
+                        <iron-icon icon="[[command.icon]]" slot="item-icon"></iron-icon>
+                        <div>[[command.label]]</div>
+                    </paper-icon-item>
+                </paper-button>
+            </iron-list>
+        </template>
     </template>
 
     <script>
         class PlutoniumSourceCommandPaletteView extends Polymer.Element {
-            static get is() { return 'plutonium-source-command-palette'; }
+            static get is() {
+                return 'plutonium-source-command-palette';
+            }
+
+            static get properties() {
+                return {
+                    schema: {
+                        type: Object,
+                        notify: true
+                    },
+                    selectedCommand: {
+                        type: Object,
+                        notify: true
+                    }
+                };
+            }
+
+            onAddCommand(event) {
+                this.set('selectedCommand', event.model);
+            }
         }
 
         window.customElements.define(PlutoniumSourceCommandPaletteView.is, PlutoniumSourceCommandPaletteView);

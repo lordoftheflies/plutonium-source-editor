@@ -9,26 +9,65 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 -->
 
 <link rel="import" href="../polymer/polymer-element.html">
-<link rel="import" href="shared-styles.html">
+<link rel="import" href="../iron-form/iron-form.html">
+<link rel="import" href="../paper-input/paper-input.html">
+<link rel="import" href="../paper-button/paper-button.html">
 
 <dom-module id="plutonium-source-command-editor">
-  <template>
-    <style include="shared-styles">
-      :host {
-        display: block;
+    <template>
+        <style>
+            :host {
+                display: block;
 
-        padding: 10px;
-      }
-    </style>
+            }
+        </style>
+        <iron-form id="operationForm">
+            <form>
+                <template is="dom-repeat" items="[[selectedCommand.parameters]]" as="param">
+                    <paper-input type="[[param.type]]" label="[[param.label]]"
+                                 name="[[param.name]]"></paper-input>
+                </template>
+            </form>
+            <div>
+                <paper-button raised on-tap="onApply">Apply</paper-button>
+                <paper-button raised on-tap="onCancel">Cancel</paper-button>
+            </div>
+        </iron-form>
 
+    </template>
 
-  </template>
+    <script>
+        class PlutoniumSourceCommandEditorView extends Polymer.Element {
+            static get is() {
+                return 'plutonium-source-command-editor';
+            }
 
-  <script>
-    class PlutoniumSourceCommandEditorView extends Polymer.Element {
-      static get is() { return 'plutonium-source-command-editor'; }
-    }
+            static get properties() {
+                return {
+                    selectedCommand: {
+                        type: Object,
+                        notify: true
+                    },
+                    selectedLine: {
+                        type: Object,
+                        notify: true
+                    }
+                };
+            }
 
-    window.customElements.define(PlutoniumSourceCommandEditorView.is, PlutoniumSourceCommandEditorView);
-  </script>
+            onApply() {
+                let self = this;
+                let args = this.$.operationForm.serialize();
+                Object.keys(args).forEach(function (key, index) {
+                    self.set('selectedLine.localVariables.' + key,)
+                });
+            }
+
+            onCancel() {
+
+            }
+        }
+
+        window.customElements.define(PlutoniumSourceCommandEditorView.is, PlutoniumSourceCommandEditorView);
+    </script>
 </dom-module>
