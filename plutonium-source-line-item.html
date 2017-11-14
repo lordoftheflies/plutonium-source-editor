@@ -75,14 +75,15 @@
             }
 
             resolveVariables(pattern, args) {
-                if (pattern && args) {
+                if (pattern) {
                     let text = pattern;
-
-                    Object.keys(args).forEach(function (key, index) {
-                        // key: the name of the object key
-                        // index: the ordinal position of the key within the object
-                        text = text.replace('${' + key + '}', args[key]);
-                    });
+                    if (args) {
+                        Object.keys(args).forEach(function (key, index) {
+                            // key: the name of the object key
+                            // index: the ordinal position of the key within the object
+                            text = text.replace('${' + key + '}', args[key]);
+                        });
+                    }
                     return text;
                 } else return '';
             }
