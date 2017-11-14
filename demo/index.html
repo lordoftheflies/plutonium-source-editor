@@ -1,6 +1,6 @@
 <!doctype html>
 <html lang="en">
-  <head>
+<head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, minimum-scale=1, initial-scale=1, user-scalable=yes">
 
@@ -10,21 +10,40 @@
 
     <link rel="import" href="../../iron-demo-helpers/demo-pages-shared-styles.html">
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
+    <link rel="import" href="../../iron-ajax/iron-ajax.html">
     <link rel="import" href="../plutonium-source-editor.html">
 
     <custom-style>
-      <style is="custom-style" include="demo-pages-shared-styles">
-      </style>
+        <style is="custom-style" include="demo-pages-shared-styles">
+        </style>
     </custom-style>
-  </head>
-  <body>
-    <div class="vertical-section-container centered">
-      <h3>Basic plutonium-source-editor demo</h3>
-      <demo-snippet>
+</head>
+<body>
+<div class="vertical-section-container centered">
+    <h3>Basic plutonium-source-editor demo</h3>
+    <demo-snippet>
         <template>
-          <plutonium-source-editor></plutonium-source-editor>
+            <!--<template is="dom-bind">-->
+            <iron-ajax id="schemaAjax" url="/demo/data-schema.json" last-response="{{schema}}" auto></iron-ajax>
+            <iron-ajax id="scriptAjax" url="/demo/data-script.json" last-response="{{src}}" auto></iron-ajax>
+            <div id="srcContainer"></div>
+            <plutonium-source-editor id="element" presentation-mode="code" src="[[src]]"></plutonium-source-editor>
+            <!--</template>C-->
+            <script>
+                var schemaAjax = document.getElementById('schemaAjax');
+                var scriptAjax = document.getElementById('scriptAjax');
+                var element = document.getElementById('element');
+                var srcContainer = document.getElementById('srcContainer');
+                scriptAjax.addEventListener('last-response-changed', function () {
+                    element.src = scriptAjax.lastResponse;
+                    srcContainer.innerHTML = '<p>' + JSON.stringify(scriptAjax.lastResponse) + '</p>';
+                });
+//                schemaAjax.addEventListener('last-response-changed', function () {
+//                    element.script = schemaAjax.lastResponse;
+//                });
+            </script>
         </template>
-      </demo-snippet>
-    </div>
-  </body>
+    </demo-snippet>
+</div>
+</body>
 </html>

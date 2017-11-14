@@ -1,0 +1,110 @@
+<link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-list/iron-list.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout.html">
+<link rel="import" href="../iron-flex-layout/iron-flex-layout-classes.html">
+
+<dom-module id="plutonium-source-line-item">
+    <template>
+        <style include="iron-flex">
+            :host {
+                display: inline-block;
+            }
+        </style>
+        <span>[[index]]:</span> <span>[[value]]</span>
+    </template>
+
+    <script>
+        /**
+         * `plutonium-source-editor`
+         * Polymer based source editor.
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class PlutoniumSourceLineItem extends Polymer.Element {
+            static get is() {
+                return 'plutonium-source-line-item';
+            }
+
+            static get properties() {
+                return {
+                    presentationMode: { // code or display
+                        type: String,
+                        notify: true
+                    },
+                    index: { // code or display
+                        type: Number,
+                        notify: true
+                    },
+                    codePattern: {
+                        type: String,
+                        notify: true
+                    },
+                    displayPattern: {
+                        type: String,
+                        notify: true
+                    },
+                    localVariables: {
+                        type: Object,
+                        notify: true
+                    },
+                    code: {
+                        type: String,
+                        notify: true
+                    },
+
+                    display: {
+                        type: String,
+                        notify: true
+                    },
+
+                    value: {
+                        type: String,
+                        notify: true
+                    }
+                };
+            }
+
+            static get observers() {
+                return [
+                    '_observeSet(localVariables, codePattern, displayPattern)',
+                    '_observeMode(presentationMode, code, display)',
+                    '_observeArguments(localVariables.*)'
+                ];
+            }
+
+            resolveVariables(pattern, args) {
+                if (pattern) {
+                    let text = pattern;
+
+                    Object.keys(args).forEach(function (key, index) {
+                        // key: the name of the object key
+                        // index: the ordinal position of the key within the object
+                        text = text.replace('${' + key + '}', args[key]);
+                    });
+                    return text;
+                } else return '';
+            }
+
+            _observeMode(mode, code, display) {
+                this.set('value', (mode === 'code' ? code : display));
+                console.debug('observeMode(' + mode + ', ' + code + ', ' + display + ')');
+            }
+
+            _observeSet(args, codePattern, displayPattern) {
+                this.set('code', this.resolveVariables(codePattern, args));
+                this.set('display', this.resolveVariables(displayPattern, args));
+                console.debug('observeSet(' + codePattern + ', ' + displayPattern + ', ' + args + ')');
+            }
+
+            _observeArguments(argumentsChangeRecord) {
+                this.set('code', this.resolveVariables(this.get('codePattern'), this.get('localVariables')));
+                this.set('display', this.resolveVariables(this.get('displayPattern'), this.get('localVariables')));
+                console.debug('observeArguments(' + argumentsChangeRecord + ')');
+            }
+        }
+
+        window.customElements.define(PlutoniumSourceLineItem.is, PlutoniumSourceLineItem);
+    </script>
+</dom-module>

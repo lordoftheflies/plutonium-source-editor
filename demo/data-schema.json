@@ -1,0 +1,111 @@
+{
+  "sourceFileExtension": "lua",
+  "language": "LUA",
+  "commandGroups": [
+    {
+      "title": "Setup",
+      "description": "Operations for setup portal state.",
+      "commands": [
+        {
+          "name": "write",
+          "title": "Write",
+          "description": "Write input fields.",
+          "codePattern": "splash:select(${elementId}):focus() splash:send_text(${input})",
+          "displayPattern": "${label}",
+          "parameters": [
+            {
+              "name": "elementSelector",
+              "type": "text"
+            },
+            {
+              "name": "label",
+              "type": "text"
+            },
+            {
+              "name": "input",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "title": "Click",
+          "description": "Click on element.",
+          "codePattern": "splash:select(${elementId}):mouse_click()",
+          "displayPattern": "${label}",
+          "parameters": [
+            {
+              "name": "elementSelector",
+              "type": "text"
+            }
+          ]
+        },
+        {
+          "title": "Wait",
+          "description": "Wait, in milliseconds.",
+          "codePattern": "splash:wait(${time})",
+          "displayPattern": "${label}",
+          "parameters": [
+            {
+              "name": "elementSelector",
+              "type": "text"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "Store",
+      "description": "Operations which generate scraped data.",
+      "commands": [
+        {
+          "name": "store_list",
+          "title": "Store list",
+          "description": "Write input fields.",
+          "codePattern": "${output} = splash::select(${elementId})::text()",
+          "displayPattern": "${label}",
+          "parameters": [
+            {
+              "name": "elementSelector",
+              "type": "text"
+            },
+            {
+              "name": "output"
+            }
+          ]
+        },
+        {
+          "name": "read",
+          "title": "Read",
+          "description": "Read element text.",
+          "codePattern": "${output} = splash::select(${elementId})::text()",
+          "displayPattern": "${label}",
+          "parameters": [
+            {
+              "name": "elementSelector",
+              "type": "text"
+            },
+            {
+              "name": "output"
+            }
+          ]
+        },
+        {
+          "name": "store_text",
+          "title": "Store",
+          "description": "Read element text.",
+          "codePattern": "${output} = splash::select(${elementId})::text()",
+          "displayPattern": "${label}",
+          "parameters": [
+            {
+              "name": "elementSelector",
+              "type": "text"
+            },
+            {
+              "name": "output"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

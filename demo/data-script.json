@@ -1,0 +1,16 @@
+{
+  "label": "Band-occupany measurement",
+  "descrtiption": "Sweep frequencies for detech band-occupancy",
+  "lines": [
+    {
+      "index": 0,
+      "codePattern": "${output} = splash::select(${elementId})::text()",
+      "displayPattern": "${label}",
+      "localVariables": {
+        "output": "result.title",
+        "label": "Store value of element.",
+        "elementId": "#title"
+      }
+    }
+  ]
+}
