@@ -55,12 +55,25 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 };
             }
 
+            static get observers() {
+                return [
+                    'observeSchema(selectedCommand)'
+                ];
+            }
+
+            observeSchema(schema) {
+                console.debug('command', schema);
+                this.selectedLine = {
+                    index: 0,
+                    codePattern: schema.codePattern,
+                    displayPattern: schema.displayPattern,
+                    localVariables: this.$.operationForm.serialize()
+                };
+            }
+
             onApply() {
-                let self = this;
                 let args = this.$.operationForm.serialize();
-                Object.keys(args).forEach(function (key, index) {
-                    self.set('selectedLine.localVariables.' + key,)
-                });
+                this.set('selectedLine.localVariables', args);
             }
 
             onCancel() {
