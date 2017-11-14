@@ -13,6 +13,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../paper-item/paper-item.html">
 <link rel="import" href="../paper-button/paper-button.html">
+<link rel="import" href="plutonium-source-icons.html">
 
 <dom-module id="plutonium-source-command-palette">
     <template>
@@ -23,15 +24,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 padding: 10px;
             }
         </style>
-        <template is="dom-repeat" items="[[schema.commandGroup]]" as="commandGroup">
+        <template is="dom-repeat" items="{{schema.commandGroups}}" as="commandGroup">
             <h2>[[commandGroup.label]]</h2>
             <iron-list items="[[commandGroup.commands]]" as="command">
-                <paper-button raised on-tap="onAddCommand">
-                    <paper-icon-item raised>
-                        <iron-icon icon="[[command.icon]]" slot="item-icon"></iron-icon>
-                        <div>[[command.label]]</div>
-                    </paper-icon-item>
-                </paper-button>
+                <template>
+                    <paper-button raised on-tap="onAddCommand">
+                        <paper-icon-item raised>
+                            <iron-icon icon="[[command.icon]]" slot="item-icon"></iron-icon>
+                            <div>[[command.label]]</div>
+                        </paper-icon-item>
+                    </paper-button>
+                </template>
             </iron-list>
         </template>
     </template>
@@ -53,6 +56,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                         notify: true
                     }
                 };
+            }
+
+            static get observers() {
+                return [
+                    'observeSchema(schema)'
+                ];
+            }
+
+            observeSchema(schema) {
+                console.debug('schema', schema);
             }
 
             onAddCommand(event) {

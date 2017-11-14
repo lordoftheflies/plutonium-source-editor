@@ -3,51 +3,59 @@
   "language": "LUA",
   "commandGroups": [
     {
-      "title": "Setup",
+      "label": "Setup",
       "description": "Operations for setup portal state.",
       "commands": [
         {
           "name": "write",
-          "title": "Write",
+          "label": "Write",
+          "icon": "plutonium-source-icons:default",
           "description": "Write input fields.",
           "codePattern": "splash:select(${selector}):focus() splash:send_text(${input})",
           "displayPattern": "${label}",
           "parameters": [
             {
-              "name": "elementSelector",
+              "label": "CSS selector",
+              "name": "selector",
               "type": "text"
             },
             {
+              "label": "Display label",
               "name": "label",
               "type": "text"
             },
             {
+              "label": "Input",
               "name": "input",
               "type": "text"
             }
           ]
         },
         {
-          "title": "Click",
+          "name": "click",
+          "label": "Click",
+          "icon": "plutonium-source-icons:default",
           "description": "Click on element.",
           "codePattern": "splash:select(${selector}):mouse_click()",
           "displayPattern": "${label}",
           "parameters": [
             {
+              "label": "CSS selector",
               "name": "selector",
               "type": "text"
             }
           ]
         },
         {
-
+          "name": "wait",
+          "label": "Wait",
           "icon": "plutonium-source-icons:default",
-          "title": "Wait",
           "description": "Wait, in milliseconds.",
           "codePattern": "splash:wait(${time})",
           "displayPattern": "${label}",
           "parameters": [
             {
+              "label": "CSS selector",
               "name": "selector",
               "type": "text"
             }
@@ -56,56 +64,62 @@
       ]
     },
     {
-      "title": "Store",
+      "label": "Store",
       "description": "Operations which generate scraped data.",
       "commands": [
         {
           "name": "store_list",
+          "label": "Store list",
           "icon": "plutonium-source-icons:default",
-          "title": "Store list",
           "description": "Write input fields.",
           "codePattern": "${output} = splash::select(${selector})::text()",
           "displayPattern": "${label}",
           "parameters": [
             {
+              "label": "CSS selector",
               "name": "selector",
               "type": "text"
             },
             {
+              "label": "Output",
               "name": "output"
             }
           ]
         },
         {
           "name": "read",
+          "label": "Read",
           "icon": "plutonium-source-icons:default",
-          "title": "Read",
           "description": "Read element text.",
           "codePattern": "${output} = splash::select(${selector})::text()",
           "displayPattern": "${label}",
           "parameters": [
             {
+              "label": "CSS selector",
               "name": "selector",
               "type": "text"
             },
             {
+              "label": "Output",
               "name": "output"
             }
           ]
         },
         {
           "name": "store_text",
+          "label": "Store",
           "icon": "plutonium-source-icons:default",
-          "title": "Store",
           "description": "Read element text.",
           "codePattern": "${output} = splash::select(${selector})::text()",
           "displayPattern": "${label}",
           "parameters": [
             {
+              "label": "CSS selector",
               "name": "selector",
               "type": "text"
             },
             {
+              "label": "Output",
               "name": "output"
             }
           ]

@@ -12,6 +12,8 @@
     <link rel="import" href="../../iron-demo-helpers/demo-snippet.html">
     <link rel="import" href="../../iron-ajax/iron-ajax.html">
     <link rel="import" href="../plutonium-source-editor.html">
+    <link rel="import" href="../plutonium-source-command-editor.html">
+    <link rel="import" href="../plutonium-source-command-palette.html">
 
     <custom-style>
         <style is="custom-style" include="demo-pages-shared-styles">
@@ -19,31 +21,57 @@
     </custom-style>
 </head>
 <body>
+
+<iron-ajax id="schemaAjax" url="/demo/data-schema.json" auto></iron-ajax>
+<iron-ajax id="scriptAjax" url="/demo/data-script.json" auto></iron-ajax>
+
 <div class="vertical-section-container centered">
-    <h3>Basic plutonium-source-editor demo</h3>
+    <!--<h3>Basic plutonium-source-command-palette demo</h3>-->
+    <!--<demo-snippet>-->
+    <!--<template>-->
+    <!--<plutonium-source-command-palette id="scp" style="min-height: 200px;"></plutonium-source-command-palette>-->
+    <!--<script>-->
+    <!--var schemaAjax = document.getElementById('schemaAjax');-->
+    <!--var scriptAjax = document.getElementById('scriptAjax');-->
+    <!--var element = document.getElementById('scp');-->
+    <!--schemaAjax.addEventListener('last-response-changed', function () {-->
+    <!--element.schema = schemaAjax.lastResponse;-->
+    <!--});-->
+    <!--</script>-->
+    <!--</template>-->
+
+    <!--</demo-snippet>-->
+    <h3>Basic plutonium-source-command-editor demo</h3>
     <demo-snippet>
         <template>
-            <!--<template is="dom-bind">-->
-            <iron-ajax id="schemaAjax" url="/demo/data-schema.json" last-response="{{schema}}" auto></iron-ajax>
-            <iron-ajax id="scriptAjax" url="/demo/data-script.json" last-response="{{src}}" auto></iron-ajax>
-            <div id="srcContainer"></div>
-            <plutonium-source-editor id="element" presentation-mode="code" src="[[src]]"></plutonium-source-editor>
-            <!--</template>C-->
+            <plutonium-source-command-editor id="sce"></plutonium-source-command-editor>
             <script>
                 var schemaAjax = document.getElementById('schemaAjax');
                 var scriptAjax = document.getElementById('scriptAjax');
-                var element = document.getElementById('element');
-                var srcContainer = document.getElementById('srcContainer');
-                scriptAjax.addEventListener('last-response-changed', function () {
-                    element.src = scriptAjax.lastResponse;
-                    srcContainer.innerHTML = '<p>' + JSON.stringify(scriptAjax.lastResponse) + '</p>';
+                var element = document.getElementById('sce');
+                schemaAjax.addEventListener('last-response-changed', function () {
+                    element.selectedCommand = schemaAjax.lastResponse.commandGroups[0].commands[0];
                 });
-//                schemaAjax.addEventListener('last-response-changed', function () {
-//                    element.script = schemaAjax.lastResponse;
-//                });
             </script>
         </template>
+
     </demo-snippet>
+
+
+    <!--<h3>Basic plutonium-source-editor demo</h3>-->
+    <!--<demo-snippet>-->
+    <!--<template>-->
+    <!--<plutonium-source-editor id="se" presentation-mode="code"></plutonium-source-editor>-->
+    <!--<script>-->
+    <!--var schemaAjax = document.getElementById('schemaAjax');-->
+    <!--var scriptAjax = document.getElementById('scriptAjax');-->
+    <!--var element = document.getElementById('se');-->
+    <!--scriptAjax.addEventListener('last-response-changed', function () {-->
+    <!--element.src = scriptAjax.lastResponse;-->
+    <!--});-->
+    <!--</script>-->
+    <!--</template>-->
+    <!--</demo-snippet>-->
 </div>
 </body>
 </html>
