@@ -70,6 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             onAddCommand(event) {
+                console.debug('add command', event.model);
                 this.set('selectedCommand', event.model);
             }
         }
