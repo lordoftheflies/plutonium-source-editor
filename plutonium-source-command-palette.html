@@ -24,6 +24,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
         </style>
         <template is="dom-repeat" items="[[schema.commandGroup]]" as="commandGroup">
+            <h2>[[commandGroup.label]]</h2>
             <iron-list items="[[commandGroup.commands]]" as="command">
                 <paper-button raised on-tap="onAddCommand">
                     <paper-icon-item raised>
