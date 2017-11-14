@@ -62,13 +62,15 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             observeSchema(schema) {
-                console.debug('command', schema);
-                this.selectedLine = {
-                    index: 0,
-                    codePattern: schema.codePattern,
-                    displayPattern: schema.displayPattern,
-                    localVariables: this.$.operationForm.serialize()
-                };
+                if (schema) {
+                    console.debug('command', schema);
+                    this.selectedLine = {
+                        index: 0,
+                        codePattern: schema.codePattern,
+                        displayPattern: schema.displayPattern,
+                        localVariables: this.$.operationForm.serialize()
+                    };
+                }
             }
 
             onApply() {
