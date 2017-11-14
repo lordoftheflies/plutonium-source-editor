@@ -1,36 +1,61 @@
 <link rel="import" href="../polymer/polymer-element.html">
+<link rel="import" href="../iron-list/iron-list.html">
+<link rel="import" href="plutonium-source-line-item.html">
 
 <dom-module id="plutonium-source-editor">
-  <template>
-    <style>
-      :host {
-        display: block;
-      }
-    </style>
-    <h2>Hello [[prop1]]!</h2>
-  </template>
+    <template>
+        <style>
+            :host {
+                display: block;
+                /*@apply(--layout-vertical);*/
+            }
+        </style>
+        <h2>[[src.label]]</h2>
+        <iron-list items="{{src.lines}}" as="line" selection-enabled selected-item="{{selectedLine}}">
+            <template>
+                <plutonium-source-line-item
+                        index="[[index]]"
+                        code-pattern="[[line.codePattern]]"
+                        display-pattern="[[line.displayPattern]]"
+                        presentation-mode="[[presentationMode]]"
+                        local-variables="[[line.localVariables]]">
+                </plutonium-source-line-item>
+            </template>
+        </iron-list>
+    </template>
 
-  <script>
-    /**
-     * `plutonium-source-editor`
-     * Polymer based source editor.
-     *
-     * @customElement
-     * @polymer
-     * @demo demo/index.html
-     */
-    class PlutoniumSourceEditor extends Polymer.Element {
-      static get is() { return 'plutonium-source-editor'; }
-      static get properties() {
-        return {
-          prop1: {
-            type: String,
-            value: 'plutonium-source-editor'
-          }
-        };
-      }
-    }
+    <script>
+        /**
+         * `plutonium-source-editor`
+         * Polymer based source editor.
+         *
+         * @customElement
+         * @polymer
+         * @demo demo/index.html
+         */
+        class PlutoniumSourceEditor extends Polymer.Element {
+            static get is() {
+                return 'plutonium-source-editor';
+            }
 
-    window.customElements.define(PlutoniumSourceEditor.is, PlutoniumSourceEditor);
-  </script>
+            static get properties() {
+                return {
+                    presentationMode: { // code or display
+                        type: String,
+                        notify: true
+                    },
+                    src: {
+                        type: Object,
+                        notify: true
+                    },
+                    selectedLine: {
+                        type: Object,
+                        notify: true
+                    }
+                };
+            }
+        }
+
+        window.customElements.define(PlutoniumSourceEditor.is, PlutoniumSourceEditor);
+    </script>
 </dom-module>

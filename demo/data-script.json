@@ -4,12 +4,28 @@
   "lines": [
     {
       "index": 0,
-      "codePattern": "${output} = splash::select(${elementId})::text()",
+      "codePattern": "${output} = splash::select(\"${selector}\"):text()",
       "displayPattern": "${label}",
       "localVariables": {
         "output": "result.title",
         "label": "Store value of element.",
-        "elementId": "#title"
+        "selector": "#title"
+      }
+    },
+    {
+      "index": 1,
+      "codePattern": "return result",
+      "displayPattern": "Respond result",
+      "localVariables": {
+      }
+    },
+    {
+      "index": 2,
+      "codePattern": "${output} = splash::select(\"${selector}'\"):text()",
+      "displayPattern": "${label}",
+      "localVariables": {
+        "selector": "#content",
+        "label": "Content"
       }
     }
   ]

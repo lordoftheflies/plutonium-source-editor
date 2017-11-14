@@ -10,7 +10,7 @@
           "name": "write",
           "title": "Write",
           "description": "Write input fields.",
-          "codePattern": "splash:select(${elementId}):focus() splash:send_text(${input})",
+          "codePattern": "splash:select(${selector}):focus() splash:send_text(${input})",
           "displayPattern": "${label}",
           "parameters": [
             {
@@ -30,11 +30,11 @@
         {
           "title": "Click",
           "description": "Click on element.",
-          "codePattern": "splash:select(${elementId}):mouse_click()",
+          "codePattern": "splash:select(${selector}):mouse_click()",
           "displayPattern": "${label}",
           "parameters": [
             {
-              "name": "elementSelector",
+              "name": "selector",
               "type": "text"
             }
           ]
@@ -46,7 +46,7 @@
           "displayPattern": "${label}",
           "parameters": [
             {
-              "name": "elementSelector",
+              "name": "selector",
               "type": "text"
             }
           ]
@@ -61,7 +61,7 @@
           "name": "store_list",
           "title": "Store list",
           "description": "Write input fields.",
-          "codePattern": "${output} = splash::select(${elementId})::text()",
+          "codePattern": "${output} = splash::select(${selector})::text()",
           "displayPattern": "${label}",
           "parameters": [
             {
@@ -77,7 +77,7 @@
           "name": "read",
           "title": "Read",
           "description": "Read element text.",
-          "codePattern": "${output} = splash::select(${elementId})::text()",
+          "codePattern": "${output} = splash::select(${selector})::text()",
           "displayPattern": "${label}",
           "parameters": [
             {
@@ -93,7 +93,7 @@
           "name": "store_text",
           "title": "Store",
           "description": "Read element text.",
-          "codePattern": "${output} = splash::select(${elementId})::text()",
+          "codePattern": "${output} = splash::select(${selector})::text()",
           "displayPattern": "${label}",
           "parameters": [
             {
