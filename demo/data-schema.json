@@ -15,17 +15,14 @@
           "displayPattern": "${label}",
           "parameters": [
             {
-              "label": "CSS selector",
-              "name": "selector",
+              "name": "elementSelector",
               "type": "text"
             },
             {
-              "label": "Display label",
               "name": "label",
               "type": "text"
             },
             {
-              "label": "Input",
               "name": "input",
               "type": "text"
             }
@@ -40,7 +37,6 @@
           "displayPattern": "${label}",
           "parameters": [
             {
-              "label": "CSS selector",
               "name": "selector",
               "type": "text"
             }
@@ -55,7 +51,6 @@
           "displayPattern": "${label}",
           "parameters": [
             {
-              "label": "CSS selector",
               "name": "selector",
               "type": "text"
             }
@@ -76,12 +71,10 @@
           "displayPattern": "${label}",
           "parameters": [
             {
-              "label": "CSS selector",
-              "name": "selector",
+              "name": "elementSelector",
               "type": "text"
             },
             {
-              "label": "Output",
               "name": "output"
             }
           ]
@@ -95,12 +88,10 @@
           "displayPattern": "${label}",
           "parameters": [
             {
-              "label": "CSS selector",
-              "name": "selector",
+              "name": "elementSelector",
               "type": "text"
             },
             {
-              "label": "Output",
               "name": "output"
             }
           ]
@@ -114,12 +105,10 @@
           "displayPattern": "${label}",
           "parameters": [
             {
-              "label": "CSS selector",
-              "name": "selector",
+              "name": "elementSelector",
               "type": "text"
             },
             {
-              "label": "Output",
               "name": "output"
             }
           ]

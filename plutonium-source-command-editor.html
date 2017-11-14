@@ -23,9 +23,12 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
         <iron-form id="operationForm">
             <form>
-                <template is="dom-repeat" items="[[selectedCommand.parameters]]" as="param">
-                    <paper-input type="[[param.type]]" label="[[param.label]]"
-                                 name="[[param.name]]"></paper-input>
+                <template is="dom-repeat" items="{{selectedCommand.parameters}}" as="param">
+                    <paper-input
+                            type="[[param.type]]"
+                            label="[[param.label]]"
+                            name="[[param.name]]">
+                    </paper-input>
                 </template>
             </form>
             <div>
@@ -51,6 +54,10 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                     selectedLine: {
                         type: Object,
                         notify: true
+                    },
+                    src: {
+                        type: Object,
+                        notify: true
                     }
                 };
             }
@@ -61,15 +68,16 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
                 ];
             }
 
-            observeSchema(schema) {
-                if (schema) {
-                    console.debug('command', schema);
+            observeSchema(selectedCommand) {
+                if (selectedCommand) {
+                    console.debug('command', selectedCommand);
                     this.selectedLine = {
                         index: 0,
-                        codePattern: schema.codePattern,
-                        displayPattern: schema.displayPattern,
+                        codePattern: selectedCommand.codePattern,
+                        displayPattern: selectedCommand.displayPattern,
                         localVariables: this.$.operationForm.serialize()
                     };
+                    this.push('src.lines', this.selectedLine);
                 }
             }
 
@@ -79,7 +87,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             onCancel() {
-
+                
             }
         }
 
