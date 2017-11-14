@@ -102,7 +102,7 @@
             _observeArguments(argumentsChangeRecord) {
                 this.set('code', this.resolveVariables(this.get('codePattern'), this.get('localVariables')));
                 this.set('display', this.resolveVariables(this.get('displayPattern'), this.get('localVariables')));
-                console.debug('observeArguments(' + argumentsChangeRecord + ')');
+                console.debug('observeArguments(', argumentsChangeRecord, ')');
             }
         }
 
