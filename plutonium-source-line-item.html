@@ -75,7 +75,7 @@
             }
 
             resolveVariables(pattern, args) {
-                if (pattern) {
+                if (pattern && args) {
                     let text = pattern;
 
                     Object.keys(args).forEach(function (key, index) {
