@@ -70,17 +70,23 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             observeSchema(selectedCommand) {
                 if (selectedCommand) {
-                    console.debug('command', selectedCommand, this.$.operationForm.serialize());
-                    let localVariables = {};
-                    selectedCommand.parameters.forEach(function (item) {
-                        localVariables[item.name] = (item.default) ? item.default : null;
-                    });
+                    let localVariables = this.$.operationForm.serialize();
+
+                    if (!localVariables) {
+                        localVariables = {};
+                        selectedCommand.parameters.forEach(function (item) {
+                            localVariables[item.name] = (item.default) ? item.default : null;
+                        });
+                    }
+
+                    console.debug('command', selectedCommand, localVariables);
                     this.selectedLine = {
                         index: 0,
                         codePattern: selectedCommand.codePattern,
                         displayPattern: selectedCommand.displayPattern,
-                        localVariables: this.$.operationForm.serialize()
-                    };
+                        localVariables: || localVariables;
+                }
+                    ;
                     this.push('src.lines', this.selectedLine);
                 }
             }
