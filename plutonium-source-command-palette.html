@@ -12,6 +12,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 <link rel="import" href="../iron-list/iron-list.html">
 <link rel="import" href="../iron-icon/iron-icon.html">
 <link rel="import" href="../paper-item/paper-item.html">
+<link rel="import" href="../paper-item/paper-icon-item.html">
 <link rel="import" href="../paper-button/paper-button.html">
 <link rel="import" href="plutonium-source-icons.html">
 
@@ -26,7 +27,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
         </style>
         <template is="dom-repeat" items="{{schema.commandGroups}}" as="commandGroup">
             <h2>[[commandGroup.label]]</h2>
-            <iron-list items="[[commandGroup.commands]]" as="command">
+            <iron-list items="[[commandGroup.commands]]" as="command" selected-item="{{selectedCommand}}">
                 <template>
                     <paper-button raised on-tap="onAddCommand">
                         <paper-icon-item raised>
