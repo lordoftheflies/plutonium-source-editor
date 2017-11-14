@@ -70,7 +70,7 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
 
             observeSchema(selectedCommand) {
                 if (selectedCommand) {
-                    let localVariables = this.$.operationForm.serialize();
+                    let localVariables = this.$.operationForm.serializeForm();
 
                     if (!localVariables) {
                         localVariables = {};
@@ -92,7 +92,8 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
             }
 
             onApply() {
-                let args = this.$.operationForm.serialize();
+                let args = this.$.operationForm.serializeForm();
+                console.debug('apply args', args);
                 this.set('selectedLine.localVariables', args);
             }
 
